@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- Botón configuración -->
+  <button id="settings-toggle" title="Configuración">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <!-- Panel configuración -->
+  <div id="settings" style="display:none;">
+    <h2>Configuración</h2>
+    <p>Aquí puedes ajustar las preferencias del juego</p>
+    <label for="username">Nombre de usuario:</label><br />
+    <input type="text" id="username" placeholder="Tu nombre" />
+    <button id="save-settings" style="margin-top: 15px;">Guardar</button>
+  </div>
+
+  <!-- Menú principal -->
+  <div id="menu">
+    <h1>Blackjack</h1>
+    <button id="start-btn">Jugar</button>
+  </div>
+
+  <!-- Juego -->
+  <div id="game" style="display: none;">
+    <h2>Dealer</h2>
+    <div id="dealer-hand" class="hand"></div>
+
+    <h2>Tú</h2>
+    <div id="player-hand" class="hand"></div>
+
+    <div id="controls">
+      <button id="hit-btn" disabled>Pedir</button>
+      <button id="stand-btn" disabled>Plantarse</button>
+    </div>
+
+    <div id="result"></div>
+    <button id="restart-btn">Volver al menú</button>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+/* Reset general */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fuente y fondo */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(to right, #004c2f, #007144);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 0.5s ease;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Animación entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Menú principal */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.6s ease-out;
+}
+
+#menu h1 {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #ffcc00;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+#start-btn {
+  padding: 16px 32px;
+  font-size: 20px;
+  background: linear-gradient(135deg, #ffcc00, #ffe066);
+  color: #222;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#start-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #ffe066, #fff07a);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+/* Contenedor principal */
+#game {
+  margin: 0 auto;
+  max-width: 960px;
+  padding-bottom: 60px;
+}
+
+/* Mano de cartas */
+.hand {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+/* Carta individual */
+.card {
+  width: 80px;
+  height: 120px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+/* Controles */
+#controls {
+  margin: 35px auto;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+/* Botones */
+button {
+  padding: 14px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #ffcc00;
+  color: #333;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #ffe066;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #aaa;
+  color: #444;
+  cursor: not-allowed;
+}
+
+/* Resultado del juego */
+#result {
+  font-size: 28px;
+  font-weight: bold;
+  min-height: 30px;
+  margin: 25px 0;
+  color: #ffcc00;
+  transition: opacity 0.4s ease;
+}
+
+/* Panel de configuración */
+#settings {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  width: 300px;
+  max-width: 90%;
+  font-weight: 500;
+  font-size: 18px;
+  color: #ffcc00;
+  text-align: center;
+  display: none;
+  z-index: 1002;
+}
+#settings {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  padding: 24px 20px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid #ffcc00;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 320px;
+  max-width: 90%;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+  text-align: left;
+  display: none;
+  z-index: 1002;
+  backdrop-filter: blur(8px);
+}
+
+#settings h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: #ffcc00;
+  text-align: center;
+  text-shadow: 1px 1px 4px black;
+}
+
+#settings label {
+  display: block;
+  margin-top: 12px;
+  color: #fff;
+  font-weight: 600;
+}
+
+#settings input[type="checkbox"],
+#settings input[type="range"],
+#settings select {
+  margin-top: 6px;
+  width: 100%;
+  padding: 6px;
+  border-radius: 8px;
+  border: none;
+  background: #222;
+  color: #fff;
+}
+
+#settings hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Botón de configuración */
+#settings-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #ffcc00;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+#settings-toggle:hover {
+  transform: rotate(25deg) scale(1.1);
+  background-color: rgba(255, 204, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card {
+    width: 60px;
+    height: 90px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  #controls {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  #settings {
+    width: 90%;
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  #settings-toggle {
+    top: 10px;
+    right: 10px;
+  }
+}
