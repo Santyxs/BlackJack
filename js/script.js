@@ -6,6 +6,8 @@ let gameEnded = false;
 // Puntuación
 let wins = 0, losses = 0, ties = 0;
 
+let playerName = localStorage.getItem('playerName') || "Tú";
+
 document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start-btn');
     const menu = document.getElementById('menu');
@@ -16,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const playAgainBtn = document.getElementById('play-again-btn');
     const settingsToggle = document.getElementById('settings-toggle');
     const settingsPanel = document.getElementById('settings');
+    const saveSettingsBtn = document.getElementById('save-settings');
+    const usernameInput = document.getElementById('username');
+    const playerNameCell = document.getElementById('player-name');
+
+    playerNameCell.textContent = playerName;
 
     function createDeck() {
         const suits = ['C','D','H','S'];
@@ -143,6 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     settingsToggle.addEventListener('click',()=>{
         settingsPanel.style.display=settingsPanel.style.display==='none'?'block':'none';
+        usernameInput.value = playerName;
+    });
+
+    saveSettingsBtn.addEventListener('click',()=>{
+        const name = usernameInput.value.trim();
+        if(name) {
+            playerName = name;
+            playerNameCell.textContent = playerName;
+            localStorage.setItem('playerName', playerName);
+        }
+        settingsPanel.style.display = 'none';
     });
 
     enableControls(false);
