@@ -7,6 +7,8 @@
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
 
   <!-- Botón configuración -->
   <button id="settings-toggle" title="Configuración">
@@ -42,6 +44,30 @@
     </div>
 
     <div id="result"></div>
+
+    <!-- Tabla de puntuación -->
+    <div id="scoreboard" style="margin:20px auto; max-width:400px; text-align:center;">
+      <h3>Puntuación</h3>
+      <table style="width:100%; border-collapse:collapse; color:#fff;">
+        <thead>
+          <tr style="border-bottom:2px solid #ffcc00;">
+            <th>Jugador</th>
+            <th>Victorias</th>
+            <th>Derrotas</th>
+            <th>Empates</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="player-name">Tú</td>
+            <td id="wins">0</td>
+            <td id="losses">0</td>
+            <td id="ties">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <button id="play-again-btn" style="display:none;"><i class="fas fa-redo"></i> Jugar de nuevo</button>
     <button id="restart-btn"><i class="fas fa-home"></i> Volver al menú</button>
   </div>

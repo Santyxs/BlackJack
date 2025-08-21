@@ -3,6 +3,9 @@ let playerHand = [];
 let dealerHand = [];
 let gameEnded = false;
 
+// Puntuación
+let wins = 0, losses = 0, ties = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
     const startBtn = document.getElementById('start-btn');
     const menu = document.getElementById('menu');
@@ -14,141 +17,132 @@ document.addEventListener('DOMContentLoaded', () => {
     const settingsToggle = document.getElementById('settings-toggle');
     const settingsPanel = document.getElementById('settings');
 
-    // Funciones del juego
     function createDeck() {
-        const suits = ['C', 'D', 'H', 'S'];
-        const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        const suits = ['C','D','H','S'];
+        const values = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
         let newDeck = [];
-        for (let suit of suits) {
-            for (let value of values) {
-                newDeck.push({ suit, value });
-            }
-        }
+        suits.forEach(suit => values.forEach(value => newDeck.push({suit,value})));
         return newDeck;
     }
 
     function shuffleDeck(deck) {
-        for (let i = deck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [deck[i], deck[j]] = [deck[j], deck[i]];
+        for(let i=deck.length-1;i>0;i--){
+            const j=Math.floor(Math.random()*(i+1));
+            [deck[i],deck[j]]=[deck[j],deck[i]];
         }
     }
 
-    function drawCard() {
-        return deck.pop();
-    }
+    function drawCard(){ return deck.pop(); }
 
-    function getHandValue(hand) {
-        let value = 0;
-        let aces = 0;
-        for (let card of hand) {
-            if (['J', 'Q', 'K'].includes(card.value)) value += 10;
-            else if (card.value === 'A') { value += 11; aces += 1; }
-            else value += parseInt(card.value);
-        }
-        while (value > 21 && aces > 0) { value -= 10; aces -= 1; }
+    function getHandValue(hand){
+        let value=0, aces=0;
+        hand.forEach(card=>{
+            if(['J','Q','K'].includes(card.value)) value+=10;
+            else if(card.value==='A'){ value+=11; aces++; }
+            else value+=parseInt(card.value);
+        });
+        while(value>21 && aces>0){ value-=10; aces--; }
         return value;
     }
 
-    function createCardElement(card) {
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "card";
-        const suitNames = { 'C': 'clubs', 'D': 'diamonds', 'H': 'hearts', 'S': 'spades' };
-        const fileName = `${suitNames[card.suit]}_${card.value}.png`;
-        cardDiv.style.backgroundImage = `url('assets/cards/${fileName}')`;
-        return cardDiv;
+    function createCardElement(card){
+        const div=document.createElement("div");
+        div.className="card";
+        const suits={'C':'clubs','D':'diamonds','H':'hearts','S':'spades'};
+        div.style.backgroundImage=`url('assets/cards/${suits[card.suit]}_${card.value}.png')`;
+        return div;
     }
 
-    function updateHands() {
-        const playerDiv = document.getElementById("player-hand");
-        const dealerDiv = document.getElementById("dealer-hand");
-        playerDiv.innerHTML = "";
-        dealerDiv.innerHTML = "";
+    function updateHands(){
+        const playerDiv=document.getElementById("player-hand");
+        const dealerDiv=document.getElementById("dealer-hand");
+        playerDiv.innerHTML=""; dealerDiv.innerHTML="";
 
-        if (gameEnded) {
-            dealerHand.forEach(card => dealerDiv.appendChild(createCardElement(card)));
-        } else {
+        if(gameEnded) dealerHand.forEach(card=>dealerDiv.appendChild(createCardElement(card)));
+        else {
             dealerDiv.appendChild(createCardElement(dealerHand[0]));
-            if (dealerHand.length > 1) {
-                const hiddenCard = document.createElement("div");
-                hiddenCard.className = "card";
-                hiddenCard.style.background = "#0a5c36";
-                dealerDiv.appendChild(hiddenCard);
+            if(dealerHand.length>1){
+                const hidden=document.createElement("div");
+                hidden.className="card"; hidden.style.background="#0a5c36";
+                dealerDiv.appendChild(hidden);
             }
         }
 
-        playerHand.forEach(card => playerDiv.appendChild(createCardElement(card)));
+        playerHand.forEach(card=>playerDiv.appendChild(createCardElement(card)));
     }
 
-    function enableControls(enable) {
-        hitBtn.disabled = !enable;
-        standBtn.disabled = !enable;
+    function enableControls(enable){
+        hitBtn.disabled=!enable;
+        standBtn.disabled=!enable;
     }
 
-    function endGame(message) {
-        gameEnded = true;
-        document.getElementById("result").textContent = message;
+    function endGame(message){
+        gameEnded=true;
+        document.getElementById("result").textContent=message;
         enableControls(false);
         updateHands();
-        playAgainBtn.style.display = "inline-block";
+        playAgainBtn.style.display="inline-block";
+
+        if(message.includes("Ganaste")) wins++;
+        else if(message.includes("Perdiste")) losses++;
+        else if(message.includes("Empate")) ties++;
+
+        document.getElementById("wins").textContent=wins;
+        document.getElementById("losses").textContent=losses;
+        document.getElementById("ties").textContent=ties;
     }
 
-    function startGame() {
-        deck = createDeck();
+    function startGame(){
+        deck=createDeck();
         shuffleDeck(deck);
-        playerHand = [drawCard(), drawCard()];
-        dealerHand = [drawCard()];
-        gameEnded = false;
+        playerHand=[drawCard(),drawCard()];
+        dealerHand=[drawCard()];
+        gameEnded=false;
         updateHands();
-        document.getElementById("result").textContent = "";
-        playAgainBtn.style.display = "none";
+        document.getElementById("result").textContent="";
+        playAgainBtn.style.display="none";
         enableControls(true);
-
-        if (getHandValue(playerHand) === 21) endGame("Blackjack! Ganaste!");
+        if(getHandValue(playerHand)===21) endGame("Blackjack! Ganaste!");
     }
 
-    function hit() {
-        if (gameEnded) return;
+    function hit(){
+        if(gameEnded) return;
         playerHand.push(drawCard());
         updateHands();
-        const playerValue = getHandValue(playerHand);
-        if (playerValue > 21) endGame("Te pasaste! Has perdido.");
-        else if (playerValue === 21) document.getElementById("result").textContent = "Tienes 21!";
+        const val=getHandValue(playerHand);
+        if(val>21) endGame("Te pasaste! Has perdido.");
+        else if(val===21) document.getElementById("result").textContent="Tienes 21!";
     }
 
-    function stand() {
-        if (gameEnded) return;
-        while (getHandValue(dealerHand) < 17) dealerHand.push(drawCard());
+    function stand(){
+        if(gameEnded) return;
+        while(getHandValue(dealerHand)<17) dealerHand.push(drawCard());
         updateHands();
-        const playerValue = getHandValue(playerHand);
-        const dealerValue = getHandValue(dealerHand);
-
-        if (playerValue > 21) endGame("Te pasaste. Perdiste!");
-        else if (dealerValue > 21) endGame("El dealer se pasó. Ganaste!");
-        else if (playerValue > dealerValue) endGame("Ganaste!");
-        else if (playerValue < dealerValue) endGame("Perdiste! Gana el dealer.");
+        const pVal=getHandValue(playerHand);
+        const dVal=getHandValue(dealerHand);
+        if(pVal>21) endGame("Te pasaste. Perdiste!");
+        else if(dVal>21) endGame("El dealer se pasó. Ganaste!");
+        else if(pVal>dVal) endGame("Ganaste!");
+        else if(pVal<dVal) endGame("Perdiste! Gana el dealer.");
         else endGame("Empate!");
     }
 
-    // --- EVENTOS ---
-    startBtn.addEventListener('click', () => {
-        menu.style.display = 'none';
-        game.style.display = 'block';
+    startBtn.addEventListener('click',()=>{
+        menu.style.display='none';
+        game.style.display='block';
         startGame();
     });
 
-    hitBtn.addEventListener('click', hit);
-    standBtn.addEventListener('click', stand);
-
-    restartBtn.addEventListener('click', () => {
-        game.style.display = 'none';
-        menu.style.display = 'block';
+    hitBtn.addEventListener('click',hit);
+    standBtn.addEventListener('click',stand);
+    restartBtn.addEventListener('click',()=>{
+        game.style.display='none';
+        menu.style.display='block';
     });
+    playAgainBtn.addEventListener('click',startGame);
 
-    playAgainBtn.addEventListener('click', startGame);
-
-    settingsToggle.addEventListener('click', () => {
-        settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
+    settingsToggle.addEventListener('click',()=>{
+        settingsPanel.style.display=settingsPanel.style.display==='none'?'block':'none';
     });
 
     enableControls(false);

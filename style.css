@@ -8,7 +8,7 @@
 /* Fuente y fondo */
 body {
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(to right, #004c2f, #007144); /* Fondo degradado verde */
+  background: linear-gradient(to right, #004c2f, #007144);
   color: #fff;
   text-align: center;
   padding: 20px;
@@ -31,8 +31,7 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,26 +45,26 @@ body {
   font-weight: bold;
   margin-bottom: 30px;
   color: #ffcc00;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
 }
 
 #start-btn {
   padding: 16px 32px;
   font-size: 20px;
-  background: linear-gradient(135deg, #ffcc00, #ffe066);
+  background: linear-gradient(135deg, #ffcc00, #ffd633);
   color: #222;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
   transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 #start-btn:hover {
   transform: translateY(-3px);
-  background: linear-gradient(135deg, #ffe066, #fff07a);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, #ffd633, #fff08a);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
 }
 
 /* Contenedor principal */
@@ -83,7 +82,7 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   margin: 25px 0;
 }
 
@@ -93,75 +92,72 @@ body {
   height: 120px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
-  transition: transform 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(2deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
 /* Controles */
 #controls {
   margin: 35px auto;
   padding: 25px;
-  background: rgba(0,0,0,0.25);
-  border-radius: 16px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 18px;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  gap: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 /* Botones */
 button {
-  padding: 14px 24px;
+  padding: 14px 26px;
   font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  background-color: #ffcc00;
-  color: #333;
+  background: linear-gradient(135deg, #ffcc00, #ffd633);
+  color: #222;
   text-transform: uppercase;
   font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  transition: all 0.25s ease;
 }
 
 button:hover:not(:disabled) {
-  background-color: #ffe066;
   transform: translateY(-2px);
+  background: linear-gradient(135deg, #ffd633, #fff08a);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
 }
 
 button:disabled {
-  background-color: #aaa;
+  background-color: #999;
   color: #444;
   cursor: not-allowed;
 }
 
 /* Botón Jugar de nuevo */
 #play-again-btn {
-  margin-top: 10px;
+  margin-top: 12px;
   padding: 12px 20px;
-  background-color: #28a745;
+  background: linear-gradient(135deg, #28a745, #38d23f);
   color: #fff;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s, transform 0.2s;
-}
-
-#play-again-btn i {
-  margin-right: 5px;
 }
 
 #play-again-btn:hover {
-  background-color: #218838;
+  background: linear-gradient(135deg, #218838, #2ecc71);
   transform: translateY(-2px);
 }
 
@@ -171,8 +167,47 @@ button:disabled {
   font-weight: bold;
   min-height: 30px;
   margin: 25px 0;
+  color: #ffdd33;
+  text-shadow: 1px 1px 6px black;
+}
+
+/* Tabla de puntuación */
+#scoreboard {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  margin: 0;
+  padding: 14px 18px;
+  background: rgba(34,34,34,0.9);
+  border: 2px solid #ffcc00;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  max-width: 220px;
+  text-align: center;
+  z-index: 1003;
+}
+
+#scoreboard h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
   color: #ffcc00;
-  transition: opacity 0.4s ease;
+  text-shadow: 1px 1px 3px black;
+}
+
+#scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #fff;
+  font-size: 14px;
+}
+
+#scoreboard th, #scoreboard td {
+  padding: 6px 8px;
+  text-align: center;
+}
+
+#scoreboard thead tr {
+  border-bottom: 2px solid #ffcc00;
 }
 
 /* Panel de configuración */
@@ -183,17 +218,16 @@ button:disabled {
   padding: 24px 20px;
   width: 320px;
   max-width: 90%;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.9);
   border: 2px solid #ffcc00;
   border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.55);
   font-size: 16px;
   font-weight: 500;
   color: #fff;
   text-align: left;
   display: none;
   z-index: 1002;
-  backdrop-filter: blur(8px);
 }
 
 #settings h2 {
@@ -232,7 +266,7 @@ button:disabled {
   background: transparent;
   border: none;
   color: #ffcc00;
-  font-size: 30px;
+  font-size: 32px;
   cursor: pointer;
   z-index: 1001;
   width: 50px;
@@ -256,4 +290,5 @@ button:disabled {
   #controls { gap: 12px; padding: 18px; }
   #settings { width: 90%; font-size: 16px; padding: 16px; top: 60px; right: 10px; }
   #settings-toggle { top: 10px; right: 10px; }
+  #scoreboard { max-width: 160px; padding: 10px; font-size: 13px; }
 }
