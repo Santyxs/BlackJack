@@ -14,15 +14,24 @@
   <button id="settings-toggle" title="Configuración">
     <i class="fas fa-cog"></i>
   </button>
+  
+<!-- Panel configuración -->
+<div id="settings" style="display:none;">
+  <h2>Configuración</h2>
+  <p>Aquí puedes ajustar las preferencias del juego</p>
 
-  <!-- Panel configuración -->
-  <div id="settings" style="display:none;">
-    <h2>Configuración</h2>
-    <p>Aquí puedes ajustar las preferencias del juego</p>
-    <label for="username">Nombre de usuario:</label>
-    <input type="text" id="username" placeholder="Tu nombre" style="width:100%; margin-top:5px; padding:5px; border-radius:5px; border:none;">
-    <button id="save-settings" style="margin-top: 15px; width:100%;"><i class="fas fa-save"></i> Guardar</button>
-  </div>
+  <label for="username">Nombre de usuario:</label>
+  <input type="text" id="username" placeholder="Tu nombre" style="width:100%; margin-top:5px; padding:5px; border-radius:5px; border:none;">
+
+  <label for="show-points">
+    <input type="checkbox" id="show-points">
+    Mostrar la puntuación de las cartas
+  </label>
+
+  <button id="save-settings" style="margin-top: 15px; width:100%;">
+    <i class="fas fa-save"></i> Guardar
+  </button>
+</div>
 
   <!-- Menú principal -->
   <div id="menu">
