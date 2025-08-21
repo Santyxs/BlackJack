@@ -8,35 +8,30 @@
 /* Fuente y fondo */
 body {
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(to right, #004c2f, #007144);
+  background: linear-gradient(to right, #004c2f, #007144); /* Fondo degradado verde */
   color: #fff;
   text-align: center;
   padding: 20px;
   animation: fadeIn 0.5s ease;
-  overflow-x: hidden;
   min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Animación entrada */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Menú principal */
 #menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
@@ -51,7 +46,7 @@ body {
   font-weight: bold;
   margin-bottom: 30px;
   color: #ffcc00;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 #start-btn {
@@ -78,6 +73,9 @@ body {
   margin: 0 auto;
   max-width: 960px;
   padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Mano de cartas */
@@ -87,8 +85,6 @@ body {
   flex-wrap: wrap;
   gap: 12px;
   margin: 25px 0;
-  font-weight: 500;
-  font-size: 18px;
 }
 
 /* Carta individual */
@@ -98,7 +94,7 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
   transition: transform 0.3s ease;
 }
 
@@ -110,13 +106,13 @@ body {
 #controls {
   margin: 35px auto;
   padding: 25px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0,0,0,0.25);
   border-radius: 16px;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
 
 /* Botones */
@@ -130,7 +126,7 @@ button {
   color: #333;
   text-transform: uppercase;
   font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -143,6 +139,30 @@ button:disabled {
   background-color: #aaa;
   color: #444;
   cursor: not-allowed;
+}
+
+/* Botón Jugar de nuevo */
+#play-again-btn {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#play-again-btn i {
+  margin-right: 5px;
+}
+
+#play-again-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
 }
 
 /* Resultado del juego */
@@ -158,34 +178,17 @@ button:disabled {
 /* Panel de configuración */
 #settings {
   position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 14px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-  width: 300px;
-  max-width: 90%;
-  font-weight: 500;
-  font-size: 18px;
-  color: #ffcc00;
-  text-align: center;
-  display: none;
-  z-index: 1002;
-}
-#settings {
-  position: fixed;
   top: 80px;
   right: 30px;
   padding: 24px 20px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 2px solid #ffcc00;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   width: 320px;
   max-width: 90%;
-  font-weight: 500;
+  background: rgba(0,0,0,0.45);
+  border: 2px solid #ffcc00;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
   font-size: 16px;
+  font-weight: 500;
   color: #fff;
   text-align: left;
   display: none;
@@ -204,10 +207,11 @@ button:disabled {
 #settings label {
   display: block;
   margin-top: 12px;
-  color: #fff;
   font-weight: 600;
+  color: #fff;
 }
 
+#settings input[type="text"],
 #settings input[type="checkbox"],
 #settings input[type="range"],
 #settings select {
@@ -218,12 +222,6 @@ button:disabled {
   border: none;
   background: #222;
   color: #fff;
-}
-
-#settings hr {
-  margin: 16px 0;
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Botón de configuración */
@@ -248,35 +246,14 @@ button:disabled {
 
 #settings-toggle:hover {
   transform: rotate(25deg) scale(1.1);
-  background-color: rgba(255, 204, 0, 0.15);
+  background-color: rgba(255,204,0,0.15);
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .card {
-    width: 60px;
-    height: 90px;
-  }
-
-  button {
-    width: 100%;
-    font-size: 14px;
-    padding: 12px;
-  }
-
-  #controls {
-    gap: 12px;
-    padding: 18px;
-  }
-
-  #settings {
-    width: 90%;
-    font-size: 16px;
-    padding: 16px;
-  }
-
-  #settings-toggle {
-    top: 10px;
-    right: 10px;
-  }
+  .card { width: 60px; height: 90px; }
+  button { width: 100%; font-size: 14px; padding: 12px; }
+  #controls { gap: 12px; padding: 18px; }
+  #settings { width: 90%; font-size: 16px; padding: 16px; top: 60px; right: 10px; }
+  #settings-toggle { top: 10px; right: 10px; }
 }
