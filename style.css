@@ -286,7 +286,6 @@ button:disabled {
 #settings label {
   display: flex;
   flex-direction: column;
-  /* Checkbox debajo del texto */
   align-items: flex-start;
   margin-top: 12px;
   font-weight: 600;
@@ -333,6 +332,60 @@ button:disabled {
 #settings-toggle:hover {
   transform: rotate(25deg) scale(1.1);
   background-color: rgba(255, 204, 0, 0.15);
+}
+
+/* Botón de Mostrar puntuación de las cartas  */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 25px;
+  margin-top: 8px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background: linear-gradient(135deg, #ffcc00, #ffd633);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 12px;
+  align-items: flex-start;
 }
 
 /* Responsive */

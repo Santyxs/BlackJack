@@ -26,11 +26,13 @@
     <input type="text" id="username" placeholder="Tu nombre"
       style="width:100%; margin-top:5px; padding:5px; border-radius:5px; border:none;">
 
-    <label for="show-points">
-      Mostrar la puntuación de las cartas
-      <input type="checkbox" id="show-points">
+    <label class="toggle-label">
+      Mostrar puntuación de las cartas
+      <label class="toggle-switch">
+        <input type="checkbox" id="show-points">
+        <span class="slider"></span>
+      </label>
     </label>
-
 
     <button id="save-settings" style="margin-top: 15px; width:100%;">
       <i class="fas fa-save"></i> Guardar
