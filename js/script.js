@@ -1,3 +1,19 @@
+// Cómo jugar
+const howtoBtn = document.getElementById('howto-btn');
+const howtoPanel = document.getElementById('how-to-play');
+const closeHowtoBtn = document.getElementById('close-howto-btn');
+
+howtoBtn.addEventListener('click', () => {
+  howtoPanel.style.display = 'flex';
+  menu.style.display = 'none';
+});
+
+closeHowtoBtn.addEventListener('click', () => {
+  howtoPanel.style.display = 'none';
+  menu.style.display = 'flex';
+});
+
+// Variables del juego
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
@@ -6,10 +22,11 @@ let gameEnded = false;
 // Puntuación
 let wins = 0, losses = 0, ties = 0;
 
-// Opciones guardadas
+// Opciones
 let playerName = localStorage.getItem('playerName') || "Tú";
 let showCardPoints = localStorage.getItem('showCardPoints') === "true";
 
+// Elementos del DOM
 document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('start-btn');
   const menu = document.getElementById('menu');
@@ -25,7 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const playerNameCell = document.getElementById('player-name');
   const showPointsCheckbox = document.getElementById('show-points');
 
+  // Elementos para mostrar nombre del jugador
   playerNameCell.textContent = playerName;
+
+  // Elemento para mostrar puntuación de cartas
   showPointsCheckbox.checked = showCardPoints;
 
   function createDeck() {
@@ -59,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function createCardElement(card) {
     const div = document.createElement("div");
     div.className = "card";
-    div.style.position = "relative"; // <-- importante
+    div.style.position = "relative";
     const suits = { 'C': 'clubs', 'D': 'diamonds', 'H': 'hearts', 'S': 'spades' };
     div.style.backgroundImage = `url('assets/cards/${suits[card.suit]}_${card.value}.png')`;
 

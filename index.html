@@ -12,12 +12,12 @@
 
 <body>
 
-  <!-- Botón configuración -->
+  <!-- Botón de configuración -->
   <button id="settings-toggle" title="Configuración">
     <i class="fas fa-cog"></i>
   </button>
 
-  <!-- Panel configuración -->
+  <!-- Panel de configuración -->
   <div id="settings" style="display:none;">
     <h2>Configuración</h2>
     <p>Aquí puedes ajustar las preferencias del juego</p>
@@ -41,9 +41,23 @@
 
   <!-- Menú principal -->
   <div id="menu">
-    <h1>Blackjack 2</h1>
+    <h1>Blackjack</h1>
     <button id="start-btn"><i class="fas fa-play"></i> Jugar</button>
+    <button id="howto-btn"><i class="fas fa-question-circle"></i> Cómo jugar</button>
   </div>
+
+  <!-- Panel Cómo jugar -->
+  <div id="how-to-play" style="display:none;">
+  <h1>Cómo jugar</h1>
+  <p>El objetivo es acercarte a 21 sin pasarte.</p>
+  <ul>
+    <li>Puedes pedir cartas (Pedir carta) o plantarte (Plantarse).</li>
+    <li>Las cartas del 2 al 10 valen su número.</li>
+    <li>J, Q, K valen 10 y A puede valer 1 u 11.</li>
+    <li>Gana quien tenga más cerca de 21 sin pasarse.</li>
+  </ul>
+    <button id="close-howto-btn"><i class="fas fa-home"></i> Volver al menú</button>
+</div>
 
   <!-- Juego -->
   <div id="game" style="display: none;">
