@@ -22,16 +22,25 @@ body {
 
 /* Animación entrada */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Menú principal */
 #menu {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,7 +54,7 @@ body {
   font-weight: bold;
   margin-bottom: 30px;
   color: #ffcc00;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 #start-btn {
@@ -57,14 +66,14 @@ body {
   border-radius: 14px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 #start-btn:hover {
   transform: translateY(-3px);
   background: linear-gradient(135deg, #ffd633, #fff08a);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
 }
 
 /* Contenedor principal */
@@ -77,13 +86,48 @@ body {
   align-items: center;
 }
 
+/* Dealer y Tú */
+#game h2 {
+  font-size: 28px;
+  color: #ffcc00;
+  text-shadow: 1px 1px 4px black;
+  margin: 10px 0;
+}
+
 /* Mano de cartas */
 .hand {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 14px;
   margin: 25px 0;
+}
+
+/* Mano de cartas del dealer */
+#dealer-hand {
+  margin-top: 10px;
+  gap: 15px;
+}
+
+/* Total del dealer */
+#dealer-total {
+  margin-bottom: 47px;
+  font-size: 20px;
+  color: #ffdd33;
+  text-shadow: 1px 1px 4px black;
+}
+
+/* Mano de cartas del jugador */
+#player-hand {
+  margin-top: 10px;
+  gap: 15px;
+}
+
+/* Total del jugador */
+#player-total {
+  margin-bottom: 47px;
+  font-size: 20px;
+  color: #ffdd33;
+  text-shadow: 1px 1px 4px black;
 }
 
 /* Carta individual */
@@ -93,26 +137,26 @@ body {
   background-size: cover;
   background-position: center;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: scale(1.15) rotate(2deg);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Controles */
 #controls {
   margin: 35px auto;
   padding: 25px;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   border-radius: 18px;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 /* Botones */
@@ -126,14 +170,14 @@ button {
   color: #222;
   text-transform: uppercase;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   transition: all 0.25s ease;
 }
 
 button:hover:not(:disabled) {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #ffd633, #fff08a);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
 button:disabled {
@@ -178,10 +222,10 @@ button:disabled {
   left: 20px;
   margin: 0;
   padding: 14px 18px;
-  background: rgba(34,34,34,0.9);
+  background: rgba(34, 34, 34, 0.9);
   border: 2px solid #ffcc00;
   border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
   max-width: 220px;
   text-align: center;
   z-index: 1003;
@@ -201,7 +245,8 @@ button:disabled {
   font-size: 14px;
 }
 
-#scoreboard th, #scoreboard td {
+#scoreboard th,
+#scoreboard td {
   padding: 6px 8px;
   text-align: center;
 }
@@ -218,10 +263,10 @@ button:disabled {
   padding: 24px 20px;
   width: 320px;
   max-width: 90%;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   border: 2px solid #ffcc00;
   border-radius: 18px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.55);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
   font-size: 16px;
   font-weight: 500;
   color: #fff;
@@ -239,7 +284,10 @@ button:disabled {
 }
 
 #settings label {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  /* Checkbox debajo del texto */
+  align-items: flex-start;
   margin-top: 12px;
   font-weight: 600;
   color: #fff;
@@ -256,6 +304,10 @@ button:disabled {
   border: none;
   background: #222;
   color: #fff;
+}
+
+#settings input[type="checkbox"] {
+  width: auto;
 }
 
 /* Botón de configuración */
@@ -280,15 +332,49 @@ button:disabled {
 
 #settings-toggle:hover {
   transform: rotate(25deg) scale(1.1);
-  background-color: rgba(255,204,0,0.15);
+  background-color: rgba(255, 204, 0, 0.15);
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .card { width: 60px; height: 90px; }
-  button { width: 100%; font-size: 14px; padding: 12px; }
-  #controls { gap: 12px; padding: 18px; }
-  #settings { width: 90%; font-size: 16px; padding: 16px; top: 60px; right: 10px; }
-  #settings-toggle { top: 10px; right: 10px; }
-  #scoreboard { max-width: 160px; padding: 10px; font-size: 13px; }
+  .card {
+    width: 60px;
+    height: 90px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  #controls {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  #settings {
+    width: 90%;
+    font-size: 16px;
+    padding: 16px;
+    top: 60px;
+    right: 10px;
+  }
+
+  #settings-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  #scoreboard {
+    max-width: 160px;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  #player-hand {
+    gap: 18px;
+  }
+
+  /* Ajustamos en móviles */
 }

@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blackjack</title>
+  <title>Blackjack 2</title>
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
 
   <!-- Botón configuración -->
   <button id="settings-toggle" title="Configuración">
     <i class="fas fa-cog"></i>
   </button>
-  
-<!-- Panel configuración -->
-<div id="settings" style="display:none;">
-  <h2>Configuración</h2>
-  <p>Aquí puedes ajustar las preferencias del juego</p>
 
-  <label for="username">Nombre de usuario:</label>
-  <input type="text" id="username" placeholder="Tu nombre" style="width:100%; margin-top:5px; padding:5px; border-radius:5px; border:none;">
+  <!-- Panel configuración -->
+  <div id="settings" style="display:none;">
+    <h2>Configuración</h2>
+    <p>Aquí puedes ajustar las preferencias del juego</p>
 
-  <label for="show-points">
-    <input type="checkbox" id="show-points">
-    Mostrar la puntuación de las cartas
-  </label>
+    <label for="username">Nombre de usuario:</label>
+    <input type="text" id="username" placeholder="Tu nombre"
+      style="width:100%; margin-top:5px; padding:5px; border-radius:5px; border:none;">
 
-  <button id="save-settings" style="margin-top: 15px; width:100%;">
-    <i class="fas fa-save"></i> Guardar
-  </button>
-</div>
+    <label for="show-points">
+      Mostrar la puntuación de las cartas
+      <input type="checkbox" id="show-points">
+    </label>
+
+
+    <button id="save-settings" style="margin-top: 15px; width:100%;">
+      <i class="fas fa-save"></i> Guardar
+    </button>
+  </div>
 
   <!-- Menú principal -->
   <div id="menu">
-    <h1>Blackjack</h1>
+    <h1>Blackjack 2</h1>
     <button id="start-btn"><i class="fas fa-play"></i> Jugar</button>
   </div>
 
@@ -85,4 +89,5 @@
   <script src="js/menu.js"></script>
 
 </body>
+
 </html>
