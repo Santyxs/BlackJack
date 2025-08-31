@@ -1,19 +1,4 @@
-// Cómo jugar
-const howtoBtn = document.getElementById('howto-btn');
-const howtoPanel = document.getElementById('how-to-play');
-const closeHowtoBtn = document.getElementById('close-howto-btn');
-
-howtoBtn.addEventListener('click', () => {
-  howtoPanel.style.display = 'flex';
-  menu.style.display = 'none';
-});
-
-closeHowtoBtn.addEventListener('click', () => {
-  howtoPanel.style.display = 'none';
-  menu.style.display = 'flex';
-});
-
-// Variables del juego
+// Variables globales
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
@@ -26,28 +11,73 @@ let wins = 0, losses = 0, ties = 0;
 let playerName = localStorage.getItem('playerName') || "Tú";
 let showCardPoints = localStorage.getItem('showCardPoints') === "true";
 
-// Elementos del DOM
 document.addEventListener('DOMContentLoaded', () => {
-  const startBtn = document.getElementById('start-btn');
+  // Elementos del DOM
   const menu = document.getElementById('menu');
+  const startBtn = document.getElementById('start-btn');
   const game = document.getElementById('game');
   const hitBtn = document.getElementById('hit-btn');
   const standBtn = document.getElementById('stand-btn');
   const restartBtn = document.getElementById('restart-btn');
   const playAgainBtn = document.getElementById('play-again-btn');
+
+  const howtoBtn = document.getElementById('howto-btn');
+  const howtoPanel = document.getElementById('how-to-play');
+  const closeHowtoBtn = document.getElementById('close-howto-btn');
+
   const settingsToggle = document.getElementById('settings-toggle');
   const settingsPanel = document.getElementById('settings');
   const saveSettingsBtn = document.getElementById('save-settings');
   const usernameInput = document.getElementById('username');
-  const playerNameCell = document.getElementById('player-name');
   const showPointsCheckbox = document.getElementById('show-points');
 
-  // Elementos para mostrar nombre del jugador
+  const scoreboardToggle = document.getElementById('scoreboard-toggle');
+  const scoreboard = document.getElementById('scoreboard');
+
+  const playerNameCell = document.getElementById('player-name');
+  const winsCell = document.getElementById('wins');
+  const lossesCell = document.getElementById('losses');
+  const tiesCell = document.getElementById('ties');
+
+  // Actualizar nombre del jugador en la tabla de puntuación
   playerNameCell.textContent = playerName;
 
-  // Elemento para mostrar puntuación de cartas
-  showPointsCheckbox.checked = showCardPoints;
+  // Mostrar/Ocultar tabla de puntuación
+  scoreboardToggle.addEventListener('click', () => {
+    scoreboard.style.display = scoreboard.style.display === 'none' ? 'block' : 'none';
+  });
 
+  // Panel "Cómo jugar"
+  howtoBtn.addEventListener('click', () => {
+    howtoPanel.style.display = 'flex';
+    menu.style.display = 'none';
+  });
+  closeHowtoBtn.addEventListener('click', () => {
+    howtoPanel.style.display = 'none';
+    menu.style.display = 'flex';
+  });
+
+  // Configuración
+  settingsToggle.addEventListener('click', () => {
+    settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
+    usernameInput.value = playerName;
+    showPointsCheckbox.checked = showCardPoints;
+  });
+
+  saveSettingsBtn.addEventListener('click', () => {
+    const name = usernameInput.value.trim();
+    if (name) {
+      playerName = name;
+      playerNameCell.textContent = playerName;
+      localStorage.setItem('playerName', playerName);
+    }
+    showCardPoints = showPointsCheckbox.checked;
+    localStorage.setItem('showCardPoints', showCardPoints);
+    settingsPanel.style.display = 'none';
+    updateHands();
+  });
+
+  // Crear y barajar deck
   function createDeck() {
     const suits = ['C', 'D', 'H', 'S'];
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -79,20 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function createCardElement(card) {
     const div = document.createElement("div");
     div.className = "card";
-    div.style.position = "relative";
     const suits = { 'C': 'clubs', 'D': 'diamonds', 'H': 'hearts', 'S': 'spades' };
     div.style.backgroundImage = `url('assets/cards/${suits[card.suit]}_${card.value}.png')`;
-
     return div;
   }
 
+  // Actualizar cartas en pantalla
   function updateHands() {
     const playerDiv = document.getElementById("player-hand");
     const dealerDiv = document.getElementById("dealer-hand");
     playerDiv.innerHTML = "";
     dealerDiv.innerHTML = "";
 
-    // Mostrar cartas del dealer
     if (gameEnded) {
       dealerHand.forEach(card => dealerDiv.appendChild(createCardElement(card)));
     } else {
@@ -105,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Mostrar cartas del jugador
     playerHand.forEach(card => playerDiv.appendChild(createCardElement(card)));
 
     // Mostrar total de puntos si está activado
@@ -131,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     standBtn.disabled = !enable;
   }
 
+  // Lógica del juego
   function endGame(message) {
     gameEnded = true;
     document.getElementById("result").textContent = message;
@@ -142,9 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (message.includes("Perdiste")) losses++;
     else if (message.includes("Empate")) ties++;
 
-    document.getElementById("wins").textContent = wins;
-    document.getElementById("losses").textContent = losses;
-    document.getElementById("ties").textContent = ties;
+    winsCell.textContent = wins;
+    lossesCell.textContent = losses;
+    tiesCell.textContent = ties;
   }
 
   function startGame() {
@@ -182,38 +210,42 @@ document.addEventListener('DOMContentLoaded', () => {
     else endGame("Empate!");
   }
 
+  // Listeners de botones
   startBtn.addEventListener('click', () => {
     menu.style.display = 'none';
     game.style.display = 'block';
+    hitBtn.addEventListener('click', hit);
+    standBtn.addEventListener('click', stand);
+    scoreboardToggle.style.display = 'flex';
     startGame();
   });
 
-  hitBtn.addEventListener('click', hit);
-  standBtn.addEventListener('click', stand);
   restartBtn.addEventListener('click', () => {
     game.style.display = 'none';
-    menu.style.display = 'block';
-  });
-  playAgainBtn.addEventListener('click', startGame);
-
-  settingsToggle.addEventListener('click', () => {
-    settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
-    usernameInput.value = playerName;
-    showPointsCheckbox.checked = showCardPoints;
+    menu.style.display = 'flex';
+    playAgainBtn.style.display = 'none';
+    scoreboardToggle.style.display = 'none';
   });
 
-  saveSettingsBtn.addEventListener('click', () => {
-    const name = usernameInput.value.trim();
-    if (name) {
-      playerName = name;
-      playerNameCell.textContent = playerName;
-      localStorage.setItem('playerName', playerName);
-    }
-    showCardPoints = showPointsCheckbox.checked;
-    localStorage.setItem('showCardPoints', showCardPoints);
-    settingsPanel.style.display = 'none';
-    updateHands();
+  playAgainBtn.addEventListener('click', () => {
+    game.style.display = 'block';
+    menu.style.display = 'none';
+    scoreboardToggle.style.display = 'flex';
+    startGame();
   });
 
+  howtoBtn.addEventListener('click', () => {
+    howtoPanel.style.display = 'flex';
+    menu.style.display = 'none';
+    scoreboardToggle.style.display = 'none';
+  });
+
+  closeHowtoBtn.addEventListener('click', () => {
+    howtoPanel.style.display = 'none';
+    menu.style.display = 'flex';
+    scoreboardToggle.style.display = 'none';
+  });
+
+  // Inicial
   enableControls(false);
 });
