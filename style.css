@@ -504,6 +504,46 @@ input:checked + .slider:before {
 
 /* Responsive */
 @media (max-width: 600px) {
+  #scoreboard table,
+  #scoreboard thead,
+  #scoreboard tbody,
+  #scoreboard th,
+  #scoreboard td,
+  #scoreboard tr {
+    display: block;
+    width: 100%;
+  }
+
+  #scoreboard thead {
+    display: none;
+  }
+
+  #scoreboard tr {
+    margin-bottom: 12px;
+    border: 1px solid #ffcc00;
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(0,0,0,0.5);
+  }
+
+  #scoreboard td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  #scoreboard td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%;
+    text-align: left;
+    font-weight: bold;
+    color: #ffcc00;
+  }
+}
+
+@media (max-width: 600px) {
   #how-to-play h1 { font-size: 32px; }
   #how-to-play p, #how-to-play li { font-size: 14px; }
   #close-howto-btn { font-size: 16px; padding: 12px 24px; }
