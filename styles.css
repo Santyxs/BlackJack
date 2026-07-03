@@ -247,7 +247,6 @@ button:disabled {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 620px;
   background: linear-gradient(180deg, rgba(18, 61, 44, 0.9), rgba(6, 15, 11, 0.96));
