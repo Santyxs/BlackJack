@@ -258,7 +258,7 @@ button:disabled {
 
 #how-to-play h1 {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: 35px;
   color: var(--gold-bright);
   margin-bottom: 18px;
   text-align: center;
@@ -267,7 +267,7 @@ button:disabled {
 #how-to-play > p {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: 19px;
+  font-size: 20px;
   text-align: center;
   margin-bottom: 18px;
   color: var(--ivory-dim);
@@ -276,10 +276,10 @@ button:disabled {
 #how-to-play ul {
   list-style: none;
   text-align: left;
-  margin-bottom: 28px;
+  margin-bottom: 27px;
   width: 100%;
   border-top: 1px solid rgba(207, 164, 56, 0.25);
-  padding-top: 16px;
+  padding-top: 15px;
 }
 
 #how-to-play li {
