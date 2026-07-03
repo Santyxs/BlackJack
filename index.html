@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta property="og:title" content="Blackjack 2" />
   <meta property="og:description" content="Juega al Blackjack 2 online" />
-  <meta property="og:image" content="./assets/logo.png" />
+  <meta property="og:image" content="https://santyxs.vercel.app/assets/BlackJack.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://black-jack2.vercel.app" />
   <title>Blackjack 2</title>
-  <link rel="icon" type="image/png" href="./assets/logo.png">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="https://santyxs.vercel.app/assets/BlackJack.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
 
+</head>
 <body>
 
+  <!-- Marco decorativo art déco -->
+  <div class="deco-frame" aria-hidden="true">
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
+  </div>
+
   <!-- Botón de configuración -->
-  <button id="settings-toggle" title="Configuración">
+  <button id="settings-toggle" class="icon-btn" title="Configuración">
     <i class="fas fa-cog"></i>
   </button>
-
   <!-- Botón para tabla de puntuación -->
-  <button id="scoreboard-toggle" title="Mostrar puntuación" style="display:none;">
-    <i class="fas fa-list"></i>
+  <button id="scoreboard-toggle" class="icon-btn" title="Mostrar puntuación" style="display:none;">
+    <i class="fas fa-chart-simple"></i>
   </button>
-
 
   <!-- Panel de configuración -->
   <div id="settings">
     <h2>Configuración</h2>
-    <p>Aquí puedes ajustar las preferencias del juego</p>
-
-    <label for="username">Nombre de usuario:</label>
+    <p>Ajusta tus preferencias de mesa</p>
+    <label for="username">Nombre de usuario</label>
     <input type="text" id="username" placeholder="Tu nombre">
-
     <label class="toggle-label">
       Mostrar puntuación de las cartas
       <label class="toggle-switch">
@@ -43,7 +49,6 @@
         <span class="slider"></span>
       </label>
     </label>
-
     <button id="save-settings">
       <i class="fas fa-save"></i> Guardar
     </button>
@@ -51,9 +56,13 @@
 
   <!-- Menú principal -->
   <div id="menu">
-    <h1>Blackjack 2</h1>
-    <button id="start-btn"><i class="fas fa-play"></i> Jugar</button>
-    <button id="howto-btn"><i class="fas fa-question-circle"></i> Cómo jugar</button>
+    <div class="menu-card">
+      <span class="menu-suits" aria-hidden="true">♠ ♥ ♦ ♣</span>
+      <h1>Blackjack<span class="menu-two">2</span></h1>
+      <p class="menu-tagline">La mesa está servida. Acércate a 21.</p>
+      <button id="start-btn"><i class="fas fa-play"></i> Jugar</button>
+      <button id="howto-btn" class="btn-secondary"><i class="fas fa-question-circle"></i> Cómo jugar</button>
+    </div>
   </div>
 
   <!-- Panel Cómo jugar -->
@@ -61,9 +70,9 @@
     <h1>Cómo jugar</h1>
     <p>El objetivo es acercarte a 21 sin pasarte.</p>
     <ul>
-      <li>Puedes pedir cartas (Pedir carta) o plantarte (Plantarse).</li>
+      <li>Puedes pedir cartas (<strong>Pedir</strong>) o plantarte (<strong>Plantarse</strong>).</li>
       <li>Las cartas del 2 al 10 valen su número.</li>
-      <li>J, Q, K valen 10 y A puede valer 1 u 11.</li>
+      <li>J, Q, K valen 10 y el As puede valer 1 u 11.</li>
       <li>Gana quien tenga más cerca de 21 sin pasarse.</li>
     </ul>
     <button id="close-howto-btn"><i class="fas fa-home"></i> Volver al menú</button>
@@ -71,22 +80,35 @@
 
   <!-- Juego -->
   <div id="game" style="display:none;">
-    <h2>Dealer</h2>
-    <div id="dealer-hand" class="hand"></div>
+    <div class="table-zone">
+      <h2><i class="fas fa-user-tie"></i> Dealer</h2>
+      <div id="dealer-hand" class="hand"></div>
+    </div>
 
-    <h2>Tú</h2>
-    <div id="player-hand" class="hand"></div>
+    <div class="table-divider" aria-hidden="true">
+      <span></span><i class="fas fa-heart"></i><span></span>
+    </div>
+
+    <div class="table-zone">
+      <h2><i class="fas fa-user"></i> Tú</h2>
+      <div id="player-hand" class="hand"></div>
+    </div>
+
+    <div id="result"></div>
 
     <div id="controls">
       <button id="hit-btn" disabled><i class="fas fa-hand-paper"></i> Pedir</button>
       <button id="stand-btn" disabled><i class="fas fa-hand-rock"></i> Plantarse</button>
     </div>
 
-    <div id="result"></div>
+    <div class="post-game-actions">
+      <button id="play-again-btn"><i class="fas fa-redo"></i> Jugar de nuevo</button>
+      <button id="restart-btn" class="btn-secondary"><i class="fas fa-home"></i> Volver al menú</button>
+    </div>
 
     <!-- Tabla de puntuación -->
     <div id="scoreboard">
-      <h3>Puntuación</h3>
+      <h3><i class="fas fa-crown"></i> Puntuación</h3>
       <table>
         <thead>
           <tr>
@@ -104,17 +126,10 @@
             <td id="ties" data-label="Empates">0</td>
           </tr>
         </tbody>
-
-        </tr>
-        </tbody>
       </table>
     </div>
-
-    <button id="play-again-btn"><i class="fas fa-redo"></i> Jugar de nuevo</button>
-    <button id="restart-btn"><i class="fas fa-home"></i> Volver al menú</button>
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>

@@ -127,8 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dealerDiv.appendChild(createCardElement(dealerHand[0]));
       if (dealerHand.length > 1) {
         const hidden = document.createElement("div");
-        hidden.className = "card";
-        hidden.style.background = "#0a5c36";
+        hidden.className = "card card-back";
         dealerDiv.appendChild(hidden);
       }
     }
@@ -138,17 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar total de puntos si está activado
     const playerTotalDiv = document.getElementById("player-total") || document.createElement("div");
     playerTotalDiv.id = "player-total";
-    playerTotalDiv.style.marginTop = "10px";
-    playerTotalDiv.style.fontWeight = "bold";
-    playerTotalDiv.style.color = "#ffcc00";
     playerTotalDiv.textContent = showCardPoints ? `Total: ${getHandValue(playerHand)}` : "";
     if (!document.getElementById("player-total")) playerDiv.parentNode.insertBefore(playerTotalDiv, playerDiv.nextSibling);
 
     const dealerTotalDiv = document.getElementById("dealer-total") || document.createElement("div");
     dealerTotalDiv.id = "dealer-total";
-    dealerTotalDiv.style.marginTop = "10px";
-    dealerTotalDiv.style.fontWeight = "bold";
-    dealerTotalDiv.style.color = "#ffcc00";
     dealerTotalDiv.textContent = showCardPoints ? `Total: ${getHandValue(dealerHand)}` : "";
     if (!document.getElementById("dealer-total")) dealerDiv.parentNode.insertBefore(dealerTotalDiv, dealerDiv.nextSibling);
   }
